@@ -8,10 +8,11 @@
 - Introduce the necessary programming language/softwares such as: Verilog (programming language), Quartus II, Microwind & DSCH2 to design, simulate, visualize and verify CMOS logic circuits and layouts
 
 ## Lecutre Videos
+
 1. Course Content
    https://youtu.be/mJu9fpg3MbI
-   
-3. The transistor concept (L1P1)
+
+2. The transistor concept (L1P1)
    https://youtu.be/UAyXRaHNL1k
    
 3.History and basic transistor (L1P2)
