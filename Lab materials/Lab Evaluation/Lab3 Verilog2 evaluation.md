@@ -19,7 +19,7 @@ Design a 1-bit ALU that performs AND, OR, ADD and SUBTRACT operations. The ALU w
 ## Answer
 
 ```verilog
-module lab4(a, b, S, y);
+module ALU(a, b, S, y);
 input a,b;
 input [1:0] S;
 output reg  y;
