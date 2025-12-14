@@ -15,7 +15,7 @@ Y = 1001
 
 ## Answer
 
-```c
+```verilog
 module eval(Y, A, B);
 input [3:0] A, B;
 output [3:0] Y;
@@ -41,7 +41,7 @@ Y = 0110
 
 ## Answer
 
-```c
+```verilog
 module eval(Y, A, B);
 input [3:0] A, B;
 output [3:0] Y;
