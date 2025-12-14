@@ -13,4 +13,4 @@
       https://youtube.com/playlist?list=PLbn1ykCe23UeDHYWROZJB0DPL4nyGo6Cj
 
 ### Theory Playlist
-      https://youtube.com/playlist?list=PLbn1ykCe23UeICjfkoruMhr3WcHWkItfa
+      https://youtube.com/playlist?list=PL-e5hRmSNQ_1Rqg-n_WDcKG1gNlNHpNvM
