@@ -7,7 +7,7 @@ You are also required to use the **Synchronous reset**. The reset will activate 
 
 | A | 0 | 0 | 1 | 1 | 1 | 0 | 1 | 1 | 1 | 1 | 1 | 0 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| z | 0 | 0 | 0 | 0 | 0 | **1** | 0 | 0 | 0 | **1** | 0 | 0 |
+| **z** | 0 | 0 | 0 | 0 | 0 | **1** | 0 | 0 | 0 | **1** | 0 | 0 |
 
 **Deliverables:**
 
@@ -107,3 +107,4 @@ module mealyfsm (Clock, Resetn, w, z,y,Y);
 
 endmodule
 ```
+
