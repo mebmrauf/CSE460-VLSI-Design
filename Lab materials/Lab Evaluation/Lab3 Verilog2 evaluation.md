@@ -15,3 +15,25 @@ Design a 1-bit ALU that performs AND, OR, ADD and SUBTRACT operations. The ALU w
 (i) Copy and paste the Verilog HDL code.
 
 (ii) Screenshot of the timing diagram.(With the input guidelines)
+
+## Answer
+
+```verilog
+module ALU(a, b, S, y);
+input a,b;
+input [1:0] S;
+output reg  y;
+
+always @(*)
+begin
+    case (S)
+        2'b00: y = a & b;
+        2'b01: y = a | b;
+        2'b10: y = a + b;
+        2'b11: y = a - b;
+        default: y = 0;
+    endcase
+end
+
+endmodule
+```
