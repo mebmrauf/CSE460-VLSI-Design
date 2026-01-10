@@ -19,7 +19,7 @@ iii. Run the simulation, and verify your answer with the following inputs:[4]
 
 ## Answer
 ```Verilog
-module l2t2(cash_in, Reset, Clock, purchase, Tk_Cl, cash_return, MV, y, Y, PV);
+module vendingmachine(cash_in, Reset, Clock, purchase, Tk_Cl, cash_return, MV, y, Y, PV);
     input Reset;
     input Clock;
     input [2:0] cash_in;    // 0,10,20,50,100 tk input
