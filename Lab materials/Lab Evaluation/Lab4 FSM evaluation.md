@@ -1,4 +1,4 @@
-# Question:
+# Question
 
 Design a Verilog module of a Mealy-type FSM with inputs w(1 bit), clk, reset and output z(1 bit).
 If the input pattern is **1110** or **1111**, then output `z = 1`. (Consider **non-overlapping** input streams)
@@ -107,4 +107,5 @@ module mealyfsm (Clock, Resetn, w, z,y,Y);
 
 endmodule
 ```
+
 
