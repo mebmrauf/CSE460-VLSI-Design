@@ -30,3 +30,33 @@ The priority encoder takes a 4-bit input as well control signal (PS) and generat
 (ii) Copy and paste the Verilog HDL code.
 
 (iii) Screenshot of the timing diagram.
+
+
+```verilog
+module priority_encoder_4to2 (
+    input  [3:0] w,   // input lines
+    input  PS,        // priority select
+    output reg [1:0] y
+);
+
+always @(*) begin
+    if (PS == 1'b1) begin
+        // Priority: 1 > 2 > 0 > 3
+        if (w[1])       y = 2'b01;
+        else if (w[2])  y = 2'b10;
+        else if (w[0])  y = 2'b00;
+        else if (w[3])  y = 2'b11;
+        else            y = 2'b00;
+    end
+    else begin
+        // Priority: 3 > 0 > 2 > 1
+        if (w[3])       y = 2'b11;
+        else if (w[0])  y = 2'b00;
+        else if (w[2])  y = 2'b10;
+        else if (w[1])  y = 2'b01;
+        else            y = 2'b00;
+    end
+end
+
+endmodule
+```
