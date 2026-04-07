@@ -52,11 +52,10 @@ The priority encoder takes a 4-bit input as well control signal (PS) and generat
 | 0  | 0  | 0  | 0  | 0  | 0* |
 
 ```verilog
-module priority_encoder_4to2 (
-input  [3:0] w,
-input  PS,
-output reg [1:0] y
-);
+module priority_encoder_4to2 (w, PS, y);
+input  [3:0] w;
+input  PS;
+output reg [1:0] y;
 
 always @(*) begin
 case (PS)
