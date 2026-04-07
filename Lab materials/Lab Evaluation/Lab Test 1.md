@@ -31,31 +31,59 @@ The priority encoder takes a 4-bit input as well control signal (PS) and generat
 
 (iii) Screenshot of the timing diagram.
 
+**PS = 1 (Priority: 1 > 2 > 0 > 3)**
+
+| w3 | w2 | w1 | w0 | y1 | y0 |
+| -- | -- | -- | -- | -- | -- |
+| x  | x  | 1  | x  | 0  | 1  |
+| x  | 1  | 0  | x  | 1  | 0  |
+| x  | 0  | 0  | 1  | 0  | 0  |
+| 1  | 0  | 0  | 0  | 1  | 1  |
+| 0  | 0  | 0  | 0  | 0  | 0* |
+
+**PS = 0 (Priority: 3 > 0 > 2 > 1)**
+
+| w3 | w2 | w1 | w0 | y1 | y0 |
+| -- | -- | -- | -- | -- | -- |
+| 1  | x  | x  | x  | 1  | 1  |
+| 0  | x  | x  | 1  | 0  | 0  |
+| 0  | 1  | x  | 0  | 1  | 0  |
+| 0  | 0  | 1  | 0  | 0  | 1  |
+| 0  | 0  | 0  | 0  | 0  | 0* |
 
 ```verilog
 module priority_encoder_4to2 (
-    input  [3:0] w,   // input lines
-    input  PS,        // priority select
-    output reg [1:0] y
+input  [3:0] w,
+input  PS,
+output reg [1:0] y
 );
 
 always @(*) begin
-    if (PS == 1'b1) begin
-        // Priority: 1 > 2 > 0 > 3
-        if (w[1])       y = 2'b01;
-        else if (w[2])  y = 2'b10;
-        else if (w[0])  y = 2'b00;
-        else if (w[3])  y = 2'b11;
-        else            y = 2'b00;
+case (PS)
+    // PS = 1 → Priority: 1 > 2 > 0 > 3
+    1'b1: begin
+        casex (w)
+            4'bxx1x: y = 1; // w1
+            4'bx10x: y = 2; // w2
+            4'bx001: y = 0; // w0
+            4'b1000: y = 3; // w3
+            default: y = 0;
+        endcase
     end
-    else begin
-        // Priority: 3 > 0 > 2 > 1
-        if (w[3])       y = 2'b11;
-        else if (w[0])  y = 2'b00;
-        else if (w[2])  y = 2'b10;
-        else if (w[1])  y = 2'b01;
-        else            y = 2'b00;
+
+    // PS = 0 → Priority: 3 > 0 > 2 > 1
+    1'b0: begin
+        casex (w)
+            4'b1xxx: y = 3; // w3
+            4'b0xx1: y = 0; // w0
+            4'b010x: y = 2; // w2
+            4'b0010: y = 1; // w1
+            default: y = 0;
+        endcase
     end
+
+endcase
+
 end
 
 endmodule
