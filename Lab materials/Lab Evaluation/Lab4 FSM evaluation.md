@@ -28,82 +28,37 @@ You are also required to use the **Synchronous reset**. The reset will activate 
 
 ## Answer
 ```Verilog
-module mealyfsm (Clock, Resetn, w, z,y,Y);
+module mealyfsm (Clock, Reset, w, z, y, Y);
+    input Clock, Reset, w;
+    output reg z;
+    output reg [1:0] y, Y;
 
-	input Clock, Resetn, w;
-	output reg z;
-	output reg y, Y;
-	parameter A = 2'b00, B = 2'b01, C = 2'b10, D = 2'b11;
-	
-	
-	// Define the next state and output "combinational" circuits
-	always @(w, y)
-	case (y)
-	
-		A: 	if (w)
-		
-			begin
-			z = 0;
-			Y = B;
-			end
-			
-			else
-			begin
-			z = 0;
-			Y = A;
-			end
-		
-		
-		B: 	if (w)
-		
-			begin
-			z = 0;
-			Y = C;
-			end
-			
-			else
-			begin
-			z = 0;
-			Y = A;
-			end
-			
-		C: 	if (w)
-		
-			begin
-			z = 0;
-			Y = D;
-			end
-			
-			else
-			begin
-			z = 0;
-			Y = A;
-			end
+    parameter A = 2'b00, B = 2'b01, C = 2'b10, D = 2'b11;
 
-		D: 	if (w)
-		
-			begin
-			z = 1;
-			Y = A;
-			end
-			
-			else
-			begin
-			z = 1;
-			Y = A;
-			end
-		default: Y = A;
-		
-	endcase
-	
-	
-	// Define the sequential block
-	always @(posedge Clock) begin
-	if (Resetn) y <= A;
-	else y <= Y;
-	
-	end
+    // Combinational: next state and output logic
+    always @(w, y) begin
+        case (y)
+            A: if (w) begin z = 0; Y = B; end
+               else   begin z = 0; Y = A; end
 
+            B: if (w) begin z = 0; Y = C; end
+               else   begin z = 0; Y = A; end
+
+            C: if (w) begin z = 0; Y = D; end
+               else   begin z = 0; Y = A; end
+
+            D: if (w) begin z = 1; Y = A; end
+               else   begin z = 1; Y = A; end
+
+            default: begin z = 0; Y = A; end
+        endcase
+    end
+
+    // Sequential: state register with synchronous active-high reset
+    always @(posedge Clock) begin
+        if (Reset) y <= A;   // Active-high, synchronous reset
+        else       y <= Y;
+    end
 
 endmodule
 ```
