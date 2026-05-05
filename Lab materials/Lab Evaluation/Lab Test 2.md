@@ -142,7 +142,6 @@ The vending machine can only accept the following inputs: 0 tk, 1 tk, 2 tk, 5 tk
 
 ```Verilog
 module vendingmachine(shelf, cash_in, Reset, Clock, purchase, Tk_Cl, cash_return, MV, y, Y, PV);
-
 input [1:0] shelf;
 input [2:0] cash_in;
 input Reset, Clock;
@@ -150,8 +149,8 @@ output reg purchase;
 output reg [6:0] cash_return;  // 7-bit is enough (max 130)
 output reg Y = 0;
 output reg y;
-output reg [6:0] MV;            // 7-bit is enough
-output reg [6:0] PV;            // 7-bit is enough
+output reg [7:0] MV;            // 8-bit is enough
+output reg [7:0] PV;            // 8-bit is enough
 output reg [6:0] Tk_Cl = 0;     // 7-bit is enough
 
 parameter S0 = 0, S1 = 1;
